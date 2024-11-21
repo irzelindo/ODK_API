@@ -85,7 +85,3 @@ def get_submission_by_instance(project_id, form_id, instance_id):
     if data:
         return xmltodict.parse(data.content)
     return list(data.json())
-
-
-# if __name__ == "__main__":
-#     print(get_project_details(2))

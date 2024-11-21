@@ -1,3 +1,12 @@
+# This is an ODK API running on python with flask_restx
+# The production server is waitress running on port 9000
+# The execution command is waitress-serve --port=9000 api:app
+# The service is served by nssm service manager
+# Configure NSSM: In the NSSM GUI:
+# Path: Set this to your Python interpreter path, e.g., C:\Users\Administrator\scripts\ODK_API\.env\Scripts\python.exe
+# Startup Directory: Set this to the directory where api.py is located, e.g., C:\Users\Administrator\scripts\ODK_API\
+# Arguments: Set this to run your Flask app using Waitress: -m waitress --port=9000 api:app
+# The service name is ODK_API to start, stop, or remove it refer to nssm --help command, e.g, nssm start ODK_API
 from flask import Flask, Blueprint
 from flask_restx import Api, Resource, fields
 from controller import *
@@ -10,8 +19,8 @@ api = Api(
     version="1.0",
     title="ODK API",
     description="APHL - ODK API",
-    contact="irzelindo salvador",
-    contact_email="irzelindo.salvador@moz.aphl.org",
+    contact="irzelindo salvador | Claudio Nkumbula",
+    contact_email="irzelindo.salvador@moz.aphl.org | claudio.nkumbula@moz.aphl.org",
 )
 
 app.register_blueprint(blueprint)
@@ -160,4 +169,8 @@ class Project(Resource):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(
+    #     port=8000, 
+    #     debug=False
+    # )
+    app.run()
